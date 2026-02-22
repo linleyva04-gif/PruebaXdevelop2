@@ -1,7 +1,7 @@
 -----------INSTRUCCIONES DE EJECUCION-----------
 
 Primero se necesita clonar el repositorio:
-git clone https://github.com/tu-usuario/tu-repo.git
+git clone https://github.com/linleyva04-gif/PruebaXdevelop2.git
 cd prueba-frontenddev
 
 despues de esto, instale las dependencias

@@ -2,19 +2,20 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Users, BookOpen, FileText, TextQuote, LogOut, SignalZero, MessageSquareText } from "lucide-react";
+import { Users, BookOpen, FileText, TextQuote, LogOut, SignalZero, MessageSquareText } from "lucide-react"; //PARA LOS ICONOS
 import { motion } from "framer-motion";
 import { getToken, removeToken } from "../services/cookieService";
 
 export default function Dashboard() {
   const router = useRouter();
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<any>(null); //SE GUARDA LA INFO DEL USER QUE HIXO LOGIN
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const token = getToken();
+    const token = getToken(); //PARA VERIFICAR SI EXISTE EL TOKEN PARA QUE EL USUARI OENTRE
     const storedUser = localStorage.getItem("user");
 
+    //SINO EL TOKEN NO EXISTE ENTONCES EL USUARI OES ENVIADO DE NUEVO AL LOGIN 
     if (!token || !storedUser) {
       router.replace("/");
       return;
@@ -26,6 +27,7 @@ export default function Dashboard() {
 
   if (loading || !user) return <div>Cargando...</div>;
 
+  //Y CON EL HANDLE LOGOUT SE MANEJA LA LOGICA SE CERRAR SESION ESTO BORRA LA COOKIE
   const handleLogout = () => {
     removeToken();
     router.replace("/");

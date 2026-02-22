@@ -20,6 +20,7 @@ import {
   createColumnHelper,
 } from "@tanstack/react-table";
 
+//DEFINIR CAMPOS DE USUARIO, ESTO ES LO QUE APARECE EN LA TABLA
 type User = {
   id: number;
   email: string;
@@ -45,6 +46,7 @@ export default function UsersPage() {
   const setToken = useAuthStore((s) => s.setToken);
   const userRole = useAuthStore((s) => s.role); 
 
+  //CON ESTO SE OBTIENEN LOS DATOS DE LOS USUARIS DE LA API
   const { data, isLoading, isError } = useQuery({
     queryKey: ["users", page],
     queryFn: async () => {
@@ -60,11 +62,13 @@ const [localUsers, setLocalUsers] = useState<any[]>([]);
 
   useEffect(() => {
     if (data?.data) {
+      //SE INSERTAN ROLES
       const usersWithRoles = attachRoles(data.data); 
       setLocalUsers(usersWithRoles);
     }
   }, [data]); 
 
+  //FUNCION PARA QUE LOS ADMINS PUEDAN CAMBIAR LOS ROLES DE USUARIOS SI ES USER SE CAMBIA A ADMIN Y VICEVERSA
 const handleToggleRoles = () => {
   const selectedIndices = Object.keys(rowSelection).map(Number);
   
@@ -102,7 +106,8 @@ const handleToggleRoles = () => {
 
   const columnHelper = createColumnHelper<User>();
 
-
+//LOGICA PARA ÑA TABLA DE USUARIOS
+//EL USEMEMO AYUDA A QUE LA TABLA NO SE RECONSTRUYA DESDE CERO CON CADA BUSQUEDA, ESO HACE QUE SEA MAS RAPIDA
   const columns = useMemo(() => {
   const baseColumns = [
     columnHelper.accessor("first_name", {

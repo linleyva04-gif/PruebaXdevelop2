@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useEffect } from "react"; 
 import { useRouter } from "next/navigation";
 
+//DATOS DEL LIBRO QUE SE NECESITAN PARA MOSTRAR¡
 interface Libro {
   title: string;
   cover_i?: number;
@@ -22,7 +23,8 @@ const LibrosSeccion = () => {
   const [author, setAuthor] = useState('');
   const [year, setYear] = useState('');
   const [books, setBooks] = useState<Libro[]>([]);
-  const [selectedBook, setSelectedBook] = useState<Libro | null>(null);
+  const [selectedBook, setSelectedBook] = useState<Libro | null>(null); // ESTO ES PARA SABER QUE LIBRO ESTA SELECCIONADO
+
 
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -31,10 +33,12 @@ const LibrosSeccion = () => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) setUser(JSON.parse(storedUser));
     setLoading(false);
-  }, []);
+  }, []); 
 
   if (loading || !user) return <div>Cargando...</div>;
 
+  //LOGICA PARA BUSCAR LIBROS DE LA API DEPENDIENDO DE EL DATO QUE INGRESE EL USUARIO, NOMBRE, AUTOR O AÑO
+  //LA BUSQUEDA ES MAS EFICIENTE POR AUTOR NO SE SI SEA ALGO DE LA API
   const buscarLibros = async () => {
     if (!query && !author && !year) return;
 

@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+-----------INSTRUCCIONES DE EJECUCION-----------
 
-## Getting Started
+Primero se necesita clonar el repositorio:
+git clone https://github.com/tu-usuario/tu-repo.git
+cd prueba-frontenddev
 
-First, run the development server:
+despues de esto, instale las dependencias
+con el comand: npm install
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+y ejecute: npm run dev
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+------------JUSTIFICACION TECNICA---------------
+En el proyecto se utilizaron las tecnologias mencionadas en los requisitos
+tales como Tailwind, Next.js, Zustand, Typescript, etc. Asi como las APIs en el pdf mencionadas.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Por mi parte decidi hacer uso de lucid react para añadir al proyecto iconos, asi como las estrellas de favoritos en los posts
+de las cuales su funcionamiento se desarrollo con Zustand.
+Tambien incluí en la parte gráfica diseños hechos por mi para el apartado de menu en el dashboard, desde el inicio
+queria usar tarjetas para el menu, pero al realizarlo se veia muy vacio, asi que decidi llenarlo
+con algo inspirado en La noche estrellada, la idea inicial era programarlo
+pero al realizar dos lineas me di cuenta de que seria muy tedioso asi que decidi dibujarlo en mi celular
+con PENUP y pasarlo a SVG para usarlo en la interfaz, eso fue mucho mas sencillo y creo un mejor resultado visual.
 
-## Learn More
+A partir de ese cambio se creo el resto de la interfaz, pensada en ser sobria para encajar con 
+los dibujos decorativos, asi como con fondo azul y controles con efecto de cristal.
 
-To learn more about Next.js, take a look at the following resources:
+Para el apartado de usuarios, decidi implementar logica de cambio de rol, al ser yo quien decidio que usuarios eran Admin
+ya que la API no contaba con esos datos, fue mas sencillo hacer el cambio de rol, tambien cree botones especificos para los Admins
+como el seleccionar, solo aparece si el usuario logueado es un administrador, esta misma logica aparece en el apartado de Posts, solo los adminisradores
+pueden crear, editar y eliminar posts.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Por ultimo en el apartado de Libros, la funcionalidad es igual para todos los usuarios.

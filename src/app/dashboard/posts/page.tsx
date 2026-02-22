@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useFavoriteStore } from "../../store/useFavoriteStore";
 
 type Post = {
-  id: string; // Siempre string para evitar problemas de key
+  id: string;
   user: string;
   content: string;
 };
@@ -34,7 +34,7 @@ export default function Dashboard() {
     setUser(JSON.parse(storedUser));
   }, [router]);
 
-  // Cargar posts desde API
+  //LOGICA PARA CARGAR POSTS DESDE LA API PROPORCIONADA
   const { data: apiPosts = [], isLoading } = useQuery<Post[]>({
     queryKey: ["posts"],
     queryFn: () =>
@@ -88,19 +88,19 @@ export default function Dashboard() {
     enabled: !!expandedPostId,
   });
 
-  // Crear o editar post
+  // CREAR O EDITAR POST
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!user || !postContent.trim()) return;
 
     if (editingPostId) {
-      // Editar post existente
+      // EDITAR POST EXISTENTE
       setLocalPosts(prev =>
         prev.map(p => p.id === editingPostId ? { ...p, content: postContent } : p)
       );
       setEditingPostId(null);
     } else {
-      // Nuevo post
+      //NUEVO POST
       const newPost: Post = {
         id: `new-${Date.now()}`,
         user: user.email,
